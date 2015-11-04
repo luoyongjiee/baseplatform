@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../bp-common/bp-common.iml" filepath="$PROJECT_DIR$/../bp-common/bp-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-core/bp-core.iml" filepath="$PROJECT_DIR$/../bp-core/bp-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-dao/bp-dao.iml" filepath="$PROJECT_DIR$/../bp-dao/bp-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-entity/bp-entity.iml" filepath="$PROJECT_DIR$/../bp-entity/bp-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-interface/bp-interface.iml" filepath="$PROJECT_DIR$/../bp-interface/bp-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bp-maven.iml" filepath="$PROJECT_DIR$/bp-maven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-qc/bp-qc.iml" filepath="$PROJECT_DIR$/../bp-qc/bp-qc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-repository/bp-repository.iml" filepath="$PROJECT_DIR$/../bp-repository/bp-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-sc/bp-sc.iml" filepath="$PROJECT_DIR$/../bp-sc/bp-sc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-support/bp-support.iml" filepath="$PROJECT_DIR$/../bp-support/bp-support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bp-uic/bp-uic.iml" filepath="$PROJECT_DIR$/../bp-uic/bp-uic.iml" />
+    </modules>
+  </component>
+</project>

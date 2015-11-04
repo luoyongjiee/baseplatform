@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bp-repository:war">
+    <output-path>$PROJECT_DIR$/../bp-repository/target</output-path>
+    <root id="archive" name="bp-repository.war">
+      <element id="artifact" artifact-name="bp-repository:war exploded" />
+    </root>
+  </artifact>
+</component>

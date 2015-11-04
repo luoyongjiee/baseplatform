@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bp-uic:war">
+    <output-path>$PROJECT_DIR$/../bp-uic/target</output-path>
+    <root id="archive" name="bp-uic.war">
+      <element id="artifact" artifact-name="bp-uic:war exploded" />
+    </root>
+  </artifact>
+</component>

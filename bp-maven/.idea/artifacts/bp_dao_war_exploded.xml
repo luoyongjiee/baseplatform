@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="bp-dao:war exploded">
+    <output-path>$PROJECT_DIR$/../bp-dao/target/bp-dao</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="bp-dao" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../bp-dao/target/bp-dao/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="bp-dao/web/Web" />
+    </root>
+  </artifact>
+</component>

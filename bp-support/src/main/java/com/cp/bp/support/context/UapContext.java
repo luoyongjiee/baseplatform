@@ -8,7 +8,7 @@ import com.cp.bp.support.vo.HeaderVo;
  * created by root 2015/6/13
  * 功能：
  */
-public class UspContext {
+public class UapContext {
 
     private static ThreadLocal<ContextInfo>  contextInfoThreadLocal = new ThreadLocal<ContextInfo>();
 

@@ -1,4 +1,4 @@
-package com.cp.bp.support.constant;
+package com.cp.bp.core.constant;
 
 /**
  * created by root 2015/8/18

@@ -1,4 +1,4 @@
-package com.cp.bp.support.vo;
+package com.cp.bp.core.vo;
 
 /**
  * created by root 2015/6/12

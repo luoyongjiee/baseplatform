@@ -1,45 +1,42 @@
-package com.cp.bp.support.context;
+package com.cp.bp.core.context;
 
-
-import com.cp.bp.support.vo.BaseVo;
-import com.cp.bp.support.vo.HeaderVo;
+import com.cp.bp.core.vo.BaseVo;
+import com.cp.bp.core.vo.HeaderVo;
 
 /**
- * created by root 2015/6/13
- * åŠŸèƒ½ï¼š
+ * Created by Qifeng-Luo on 2015/11/5.
  */
-public class UapContext {
+public class ContextHolder {
+    private static ThreadLocal<ContextInfo>  contextInfoHolder = new ThreadLocal<ContextInfo>();
 
-    private static ThreadLocal<ContextInfo>  contextInfoThreadLocal = new ThreadLocal<ContextInfo>();
-
-    private static ThreadLocal<HeaderVo> headerThreadLocal = new ThreadLocal<HeaderVo>();
+    private static ThreadLocal<HeaderVo> headerHolder = new ThreadLocal<HeaderVo>();
 
     public static void setContextInfo(ContextInfo contextInfo){
-        contextInfoThreadLocal.set(contextInfo);
+        contextInfoHolder.set(contextInfo);
     }
 
     public static ContextInfo getContextInfo(){
-       return contextInfoThreadLocal.get();
+        return contextInfoHolder.get();
     }
 
     public static HeaderVo getHeader(){
-        return headerThreadLocal.get();
+        return headerHolder.get();
     }
 
     public static void setHeader(HeaderVo header){
-        headerThreadLocal.set(header);
+        headerHolder.set(header);
     }
 
     public static void clearContextInfo(){
-        contextInfoThreadLocal.remove();
+        contextInfoHolder.remove();
     }
 
     public static void clearHeader(){
-        headerThreadLocal.remove();
+        headerHolder.remove();
     }
 
     public static class ContextInfo {
-        //å¼€å§‹è®¿é—®æ—¶é—´
+        //¿ªÊ¼·ÃÎÊÊ±¼ä
         private long beginTime;
 
         private BaseVo baseVo;

@@ -36,7 +36,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bp-common" target="1.5" />
-      <module name="bp-core" target="1.5" />
+      <module name="bp-core" target="1.7" />
       <module name="bp-dao" target="1.5" />
       <module name="bp-entity" target="1.5" />
       <module name="bp-interface" target="1.5" />

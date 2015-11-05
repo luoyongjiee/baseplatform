@@ -3,6 +3,7 @@ package com.cp.bp.core.support;
 
 import com.cp.bp.common.util.JsonTool;
 import com.cp.bp.core.vo.UspData;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -10,7 +11,7 @@ import com.cp.bp.core.vo.UspData;
  * 功能：
  */
 public abstract class JsonSupport {
-//    private Logger log = Logger.getLogger(JsonSupport.class);
+   private Logger log = Logger.getLogger(JsonSupport.class);
 
     public <T> T fromRawJson(String data,Class<T> clazz){
 

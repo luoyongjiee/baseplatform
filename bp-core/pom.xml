@@ -1,30 +1,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bp</groupId>
-  <artifactId>bp-core</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.bp</groupId>
+        <artifactId>bp-maven</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../bp-maven</relativePath>
+    </parent>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.bp</groupId>
-      <artifactId>bp-common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bp</groupId>
+    <artifactId>bp-core</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
 
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>2.0-alpha2</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.bp</groupId>
+            <artifactId>bp-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 
 
-  </dependencies>
+    </dependencies>
 
-  <build>
-    <finalName>bp-core</finalName>
-  </build>
+    <build>
+        <finalName>bp-core</finalName>
+    </build>
 
 
 </project>

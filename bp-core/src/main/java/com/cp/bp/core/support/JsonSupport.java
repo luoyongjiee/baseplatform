@@ -19,7 +19,7 @@ public abstract class JsonSupport {
 
         data = data.replaceAll("\"password\":\".*\"","\"password\":\"******\"");
 
-//        log.info("json数据：["+data+"]");
+        log.info("json数据：["+data+"]");
 
         return JsonTool.fromJson(uspData.getData(),clazz);
     }

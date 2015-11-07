@@ -36,7 +36,7 @@ public class ContextHolder {
     }
 
     public static class ContextInfo {
-        //开始访问时间
+        //璇锋眰鏃堕棿
         private long beginTime;
 
         private BaseVo baseVo;

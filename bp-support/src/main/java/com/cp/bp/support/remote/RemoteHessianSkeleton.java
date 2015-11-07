@@ -3,7 +3,7 @@ package com.cp.bp.support.remote;
 import com.caucho.hessian.io.*;
 import com.caucho.hessian.server.HessianSkeleton;
 import com.caucho.services.server.ServiceContext;
-import com.cp.bp.support.constant.LogConstant;
+import com.cp.bp.core.constant.LogConstant;
 import org.apache.log4j.MDC;
 import org.springframework.context.ApplicationContext;
 

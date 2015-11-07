@@ -7,40 +7,45 @@ import com.cp.bp.core.vo.UspData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * created by root 2015/8/18
  * 功能：
  */
-public abstract class JsonSupport {
-   private Logger log = LoggerFactory.getLogger(JsonSupport.class);
+public class JsonSupport {
+    private Logger log = LoggerFactory.getLogger(JsonSupport.class);
 
-    public <T> T fromRawJson(String data,Class<T> clazz){
+    public <T> T fromRawJson(String data, Class<T> clazz) {
 
         UspData uspData = JsonTool.fromJson(data, UspData.class);
 
-        data = data.replaceAll("\"password\":\".*\"","\"password\":\"******\"");
+        String viewData = data.replaceAll("\\\\", "");
 
-        log.info("json数据：["+data+"]");
+        viewData = viewData.replaceAll("password\":\"[\\w]*\"", "pwd\":\"******\"");
 
-        return JsonTool.fromJson(uspData.getData(),clazz);
+        log.info("json数据：[" + viewData + "]");
+
+        return JsonTool.fromJson(uspData.getData(), clazz);
     }
 
-    public String toRawJson(String data,String status,String retCode,String retCodeDesc){
+    public String toRawJson(String data, String status, String retCode, String retCodeDesc) {
         UspData uspData = new UspData();
 
         uspData.setData(JsonTool.toJson(data));
 
-        if(status != null){
+        if (status != null) {
             uspData.setStatus(status);
         }
 
-        if(retCode != null){
+        if (retCode != null) {
             uspData.setRetCode(retCode);
         }
 
 
-        if(retCodeDesc != null){
+        if (retCodeDesc != null) {
             uspData.setRetCodeDec(retCodeDesc);
         }
 
@@ -48,5 +53,20 @@ public abstract class JsonSupport {
     }
 
 
+    public static void main(String[] args) {
+        Map<String, Map<String, String>> mapMap = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
+        map.put("password", "1231254325");
+        map.put("id", "fdiogrfg");
+        mapMap.put("kk", map);
+        UspData uspData = new UspData();
+        uspData.setData(JsonTool.toJson(mapMap));
+        JsonSupport jsonSupport = new JsonSupport();
+        jsonSupport.fromRawJson(JsonTool.toJson(uspData), UspData.class);
+
+        String str = "aa4d32ee85 ";
+
+
+    }
 
 }

@@ -1,13 +1,25 @@
 package com.cp.bp.core.support;
 
 
+import com.cp.bp.common.util.JsonTool;
+import com.cp.bp.core.constant.CommunicationEnum;
+import com.cp.bp.core.constant.LogConstant;
+import com.cp.bp.core.context.ContextHolder;
+import com.cp.bp.core.context.SecurityContext;
+import com.cp.bp.core.vo.BaseVo;
+import com.cp.bp.core.vo.UspData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.context.ApplicationContext;
+
 /**
  * created by root 2015/8/18
  * 功能：
  */
 public abstract class ServerService extends JsonSupport {
 
-//    private Logger log = Logger.getLogger(ServerService.class);
+//    private Logger log = LoggerFactory.getLogger(ServerService.class);
 //
 //    private SecurityContext secrityContext;
 //
@@ -24,10 +36,10 @@ public abstract class ServerService extends JsonSupport {
 //    }
 //
 //    public String toResponse(Object resp,String retCode, String retCodeDesc) {
-//        return toJson(resp,CommunicationEnum.SUCCESSS.value(),retCode,retCodeDesc);
+//        return toJson(resp, CommunicationEnum.SUCCESSS.value(),retCode,retCodeDesc);
 //    }
 //
-//    public Object parseRequest(String jsonData, Class clazz) throws ServerServiceException {
+//    public Object parseRequest(String jsonData, Class clazz)  {
 //
 //        if (!secrityContext.isCrypt()) {
 //            return super.fromRawJson(jsonData, UspData.class);
@@ -40,20 +52,20 @@ public abstract class ServerService extends JsonSupport {
 //        if (request instanceof BaseVo) {
 //            BaseVo baseVo = (BaseVo) request;
 //
-//            UspContext.setHeader(baseVo.getHeader());
+//            ContextHolder.setHeader(baseVo.getHeader());
 //
 //
-//            if(UspContext.getContextInfo() == null){
-//                UspContext.setContextInfo(new UspContext.ContextInfo());
-//                UspContext.getContextInfo().setBeginTime(System.currentTimeMillis());
-//                UspContext.getContextInfo().setBaseVo(baseVo);
+//            if(ContextHolder.getContextInfo() == null){
+//                ContextHolder.setContextInfo(new ContextHolder.ContextInfo());
+//                ContextHolder.getContextInfo().setBeginTime(System.currentTimeMillis());
+//                ContextHolder.getContextInfo().setBaseVo(baseVo);
 //            }
 //
 //
 //
-//            MDC.put(UspLogEnum.USER_ID, UserIDBuilder.build(baseVo.getCustType(), baseVo.getCustName(), baseVo.getCertType(), baseVo.getCertID()));
+//            MDC.put(LogConstant.USER_ID, UserIDBuilder.build(baseVo.getCustType(), baseVo.getCustName(), baseVo.getCertType(), baseVo.getCertID()));
 //
-//            MDC.put(UspLogEnum.SESSION_ID, baseVo.getJsid());
+//            MDC.put(LogConstant.SESSION_ID, baseVo.getJsid());
 //        }else{
 //
 //        }
@@ -72,13 +84,13 @@ public abstract class ServerService extends JsonSupport {
 //        this.applicationContext = applicationContext;
 //    }
 //
-//    public SecurityContext getSecrity() throws SecurityContextException {
+//    public SecurityContext getSecrity() throws SecurityException {
 //        if (secrityContext == null) {
 //            secrityContext = (SecurityContext) applicationContext.getBean(SecurityContext.BEAN_ID);
 //
 //            if (secrityContext == null) {
 //                log.info("[spring容器的安全上下文[security]不能为空！]");
-//                throw new SecurityContextException("[spring容器的安全上下文[security]不能为空！]");
+//                throw new SecurityException("[spring容器的安全上下文[security]不能为空！]");
 //            }
 //        }
 //        return secrityContext;

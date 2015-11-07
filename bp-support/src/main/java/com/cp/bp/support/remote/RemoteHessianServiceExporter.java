@@ -1,7 +1,7 @@
 package com.cp.bp.support.remote;
 
 import com.cp.bp.core.context.ContextHolder;
-import com.cp.bp.support.constant.LogConstant;
+import com.cp.bp.core.constant.LogConstant;
 import org.apache.log4j.MDC;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.HttpRequestMethodNotSupportedException;

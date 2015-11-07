@@ -22,11 +22,9 @@ public class JsonSupport {
 
         UspData uspData = JsonTool.fromJson(data, UspData.class);
 
-        String viewData = data.replaceAll("\\\\", "");
+        String viewData =replacePassowrd(data);
 
-        viewData = viewData.replaceAll("password\":\"[\\w]*\"", "pwd\":\"******\"");
-
-        log.info("json数据：[" + viewData + "]");
+        log.info("json数据:{}" , viewData);
 
         return JsonTool.fromJson(uspData.getData(), clazz);
     }
@@ -53,6 +51,13 @@ public class JsonSupport {
     }
 
 
+    protected String replacePassowrd(String data){
+        String viewData = data.replaceAll("\\\\", "");
+
+        viewData = viewData.replaceAll("password\":\"[\\w]*\"", "pwd\":\"******\"");
+        return viewData;
+    }
+
     public static void main(String[] args) {
         Map<String, Map<String, String>> mapMap = new HashMap<>();
         Map<String, String> map = new HashMap<>();
@@ -65,8 +70,6 @@ public class JsonSupport {
         jsonSupport.fromRawJson(JsonTool.toJson(uspData), UspData.class);
 
         String str = "aa4d32ee85 ";
-
-
     }
 
 }

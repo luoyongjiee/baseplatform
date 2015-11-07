@@ -3,25 +3,50 @@ package com.cp.bp.support.remote;
 import com.caucho.hessian.io.*;
 import com.caucho.hessian.server.HessianSkeleton;
 import com.caucho.services.server.ServiceContext;
+import com.cp.bp.common.crypt.Cryptoable;
+import com.cp.bp.common.util.JsonTool;
 import com.cp.bp.core.constant.LogConstant;
-import org.apache.log4j.MDC;
+import com.cp.bp.core.context.SecurityContext;
+import com.cp.bp.core.exception.ServiceException;
+import com.cp.bp.core.handler.IExceptionHandler;
+import com.cp.bp.core.handler.impl.DefualtExceptionHandler;
+import com.cp.bp.core.handler.impl.SimpleExceptionHandler;
+import com.cp.bp.core.vo.ErrorInfoVo;
+import com.cp.bp.core.vo.UspData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * created by root 2015/6/1
  * 功能：
  */
-public class RemoteHessianSkeleton extends HessianSkeleton {
+public class RemoteHessianSkeleton extends HessianSkeleton implements ApplicationContextAware{
 
     private static final Logger log
-            = Logger.getLogger(RemoteHessianSkeleton.class.getName());
+            = LoggerFactory.getLogger(RemoteHessianSkeleton.class.getName());
 
     private ApplicationContext context;
+
+    private  SecurityContext secrityContext;
+
+    private final static Map<Class,IExceptionHandler> EXCEPTION_HANDLER_MAPPING;
+
+    private IExceptionHandler DEFAULT_EXCEPTION_HANDER = new DefualtExceptionHandler();
+
+    static {
+        EXCEPTION_HANDLER_MAPPING = new HashMap<Class,IExceptionHandler>();
+        EXCEPTION_HANDLER_MAPPING.put(ServiceException.class,new SimpleExceptionHandler());
+
+    }
 
 
 
@@ -123,19 +148,43 @@ public class RemoteHessianSkeleton extends HessianSkeleton {
 
         //获取接口名
         Class clazz = method.getDeclaringClass();
-        MDC.put(LogConstant.INTERFACE_NAME,clazz.getSimpleName()+":"+method.getName());
+        MDC.put(LogConstant.INTERFACE_NAME, clazz.getSimpleName() + "." + method.getName());
 
 
         try {
             result = method.invoke(service, values);
         } catch (Exception e) {
-            Throwable e1 = e;
-            if (e1 instanceof InvocationTargetException)
-                e1 = ((InvocationTargetException) e).getTargetException();
+//            Throwable e1 = e;
+//            if (e1 instanceof InvocationTargetException)
+//                e1 = ((InvocationTargetException) e).getTargetException();
+//
+//            log.log(Level.FINE, this + " " + e1.toString(), e1);
+//
 
-            log.log(Level.FINE, this + " " + e1.toString(), e1);
+            IExceptionHandler handler = EXCEPTION_HANDLER_MAPPING.get(e.getClass());
 
-            out.writeFault("ServiceException", e1.getMessage(), e1);
+            //没有对应的异常解释器，用默认的
+            if (null == handler){
+                handler = DEFAULT_EXCEPTION_HANDER;
+            }
+
+            ErrorInfoVo errorInfo = handler.resolve(e);
+
+            UspData uspData = new UspData();
+            //时间
+            long time = System.currentTimeMillis();
+            uspData.setTimestamp(time);
+
+
+            Cryptoable<String> crypt = (Cryptoable<String>) getSecrity().getCryptoable();
+            String data = "";
+            //签名
+            uspData.setSignature(crypt.getSignData(data + "@" + time));
+            //返回码
+            uspData.setRetCode(errorInfo.getRetCode());
+            //返回描述
+            uspData.setRetCodeDec(errorInfo.getRetDesc());
+            out.writeReply(JsonTool.toJson(uspData));
             out.close();
             return;
         }
@@ -150,15 +199,29 @@ public class RemoteHessianSkeleton extends HessianSkeleton {
     }
 
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+       if(applicationContext ==null){
+           log.error("初始化spring容器失败");
+           throw new ServiceException("系统繁忙，请稍后再试！");
+       }
 
-
-    public interface ExceptionHandler{
-        String getErrorMsg();
+        this.context = applicationContext;
     }
 
+    public ApplicationContext getApplicationContext(){
+        return this.context;
+    }
 
+    public SecurityContext getSecrity() throws SecurityException {
+        if (secrityContext == null) {
+            secrityContext = (SecurityContext) getApplicationContext().getBean(SecurityContext.BEAN_ID);
 
-    public void setContext(ApplicationContext context) {
-        this.context = context;
+            if (secrityContext == null) {
+                log.error("[spring容器的安全上下文[security]不能为空！]");
+                throw new SecurityException("[spring容器的安全上下文[security]不能为空！]");
+            }
+        }
+        return secrityContext;
     }
 }

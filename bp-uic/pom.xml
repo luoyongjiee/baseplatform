@@ -28,5 +28,6 @@
   </dependencies>
   <build>
     <finalName>bp-uic</finalName>
+    <!-- welcome-->
   </build>
 </project>

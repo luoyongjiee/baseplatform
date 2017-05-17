@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bp-qc:war">
+    <output-path>$PROJECT_DIR$/bp-qc/target</output-path>
+    <root id="archive" name="bp-qc.war">
+      <element id="artifact" artifact-name="bp-qc:war exploded" />
+    </root>
+  </artifact>
+</component>

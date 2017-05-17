@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bp-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-maven" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-qc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-sc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-support" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bp-uic" charset="UTF-8" />
+  </component>
+</project>

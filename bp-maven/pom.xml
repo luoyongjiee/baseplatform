@@ -15,13 +15,7 @@
         <module>../bp-common</module>
         <module>../bp-core</module>
         <module>../bp-support</module>
-        <module>../bp-entity</module>
-        <module>../bp-interface</module>
         <module>../bp-dao</module>
-        <module>../bp-repository</module>
-        <module>../bp-sc</module>
-        <module>../bp-uic</module>
-        <module>../bp-qc</module>
     </modules>
 
 

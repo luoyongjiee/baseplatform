@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bp-common" />
+        <module name="bp-core" />
+        <module name="bp-dao" />
+        <module name="bp-entity" />
+        <module name="bp-interface" />
+        <module name="bp-qc" />
+        <module name="bp-repository" />
+        <module name="bp-sc" />
+        <module name="bp-support" />
+        <module name="bp-uic" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bp-common" target="1.7" />
+      <module name="bp-core" target="1.7" />
+      <module name="bp-dao" target="1.5" />
+      <module name="bp-entity" target="1.5" />
+      <module name="bp-interface" target="1.5" />
+      <module name="bp-maven" target="1.7" />
+      <module name="bp-qc" target="1.7" />
+      <module name="bp-repository" target="1.5" />
+      <module name="bp-sc" target="1.7" />
+      <module name="bp-support" target="1.7" />
+      <module name="bp-uic" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

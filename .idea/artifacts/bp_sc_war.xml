@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bp-sc:war">
+    <output-path>$PROJECT_DIR$/bp-sc/target</output-path>
+    <root id="archive" name="bp-sc.war">
+      <element id="artifact" artifact-name="bp-sc:war exploded" />
+    </root>
+  </artifact>
+</component>
